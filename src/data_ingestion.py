@@ -7,7 +7,7 @@ class BogotaDataIngestion:
     Clase encargada de la creacion de estructuras e ingestion automatizada de datasets (CSV)
     hacia el Almacen de Datos Analitico (DuckDB), garantizando idempotencia.
     """
-    def __init__(self, db_path: str = "data/logistic_warehouse.db", raw_dir: str = "data/raw"):
+    def __init__(self, db_path: str = "data/processed/logistic_warehouse.db", raw_dir: str = "data/raw"):
         self.db_path = db_path
         self.raw_dir = raw_dir
         os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
