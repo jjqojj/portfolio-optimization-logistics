@@ -148,8 +148,8 @@ class HaversineDistanceMatrixCalculator:
                 # Direct registration of pandas dataframe into DuckDB engine
                 conn.execute(f"INSERT INTO {self.matrix_table_name} SELECT * FROM df_matrix")
 
-            # Validate record count outside the insertion transaction block
-            result = conn.execute(f"SELECT COUNT(*) FROM {self.matrix_table_name}").fetchone()
+                # Validate record count outside the insertion transaction block
+                result = conn.execute(f"SELECT COUNT(*) FROM {self.matrix_table_name}").fetchone()
             
             if result is not None:
                 record_count = result[0]

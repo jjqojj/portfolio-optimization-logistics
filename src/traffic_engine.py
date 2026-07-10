@@ -133,10 +133,10 @@ class TrafficSimulationEngine:
                 # Bulk insert from pandas layer
                 conn.execute(f"INSERT INTO {self.target_time_table} SELECT * FROM df_time_matrix")
 
-            # Transactional safety verification
-            result = conn.execute(f"SELECT COUNT(*) FROM {self.target_time_table}").fetchone()
-            record_count = result[0] if result is not None else 0
-            print(f"[DATA TARGET] Transaction committed successfully. Records persisted: {record_count}")
+                # Transactional safety verification
+                result = conn.execute(f"SELECT COUNT(*) FROM {self.target_time_table}").fetchone()
+                record_count = result[0] if result is not None else 0
+                print(f"[DATA TARGET] Transaction committed successfully. Records persisted: {record_count}")
 
         except Exception as e:
             raise RuntimeError(f"Database error during traffic matrix persistence: {str(e)}")
