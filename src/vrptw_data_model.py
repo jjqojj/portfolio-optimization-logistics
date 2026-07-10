@@ -31,7 +31,7 @@ class VRPTWDataModel:
         try:
             # 1. Extract sets
             df_cust = conn.execute("SELECT customer_id, zone_bogota FROM dim_customers ORDER BY customer_id;").df()
-            df_veh = conn.execute("SELECT vehicle_id, capacity_kg FROM dim_vehicles;").df()
+            df_veh = conn.execute("SELECT vehicle_id, max_weight_kg FROM dim_vehicles;").df()
             
             # Fetch dynamic times for the chosen scenario
             time_query = f"""
@@ -51,7 +51,7 @@ class VRPTWDataModel:
             demands = {c: 150.0 for c in customers}
             demands[0] = 0.0  # Depot demand is zero
             
-            capacities = dict(zip(df_veh["vehicle_id"], df_veh["capacity_kg"]))
+            capacities = dict(zip(df_veh["vehicle_id"], df_veh["max_weight_kg"]))
             
             service_times = {n: 15.0 for n in nodes}
             service_times[0] = 0.0  # No service time at departure depot
