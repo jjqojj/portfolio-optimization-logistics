@@ -56,9 +56,9 @@ class VRPTWDataModel:
             service_times = {n: 15.0 for n in nodes}
             service_times[0] = 0.0  # No service time at departure depot
             
-            # Formulating strict delivery windows (e_i = 8 AM (480 min), l_i = 1 PM (780 min))
+            # Formulating strict delivery windows (e_i = 8 AM (480 min), l_i = 1 PM (780 min), l_i= 6pm (1080 min))
             earliest_times = {n: 480.0 for n in nodes}
-            latest_times = {n: 780.0 for n in nodes}
+            latest_times = {n: 1080.0 for n in nodes}
             
             # Absolute bounds for the depot operating shift (6 AM to 10 PM)
             earliest_times[0] = 360.0
